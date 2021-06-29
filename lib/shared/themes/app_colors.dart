@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   // O Flutter não reconhece # como indicador de cores como no css, então substituimos # por 0xFF
   static final primary = Color(0xFFFF941A);
+  static final secundary = Color(0xFF585666);
   static final grey = Color(0xFF585666);
   static final delete = Color(0xFF585666);
   static final heading = Color(0xFF585666);

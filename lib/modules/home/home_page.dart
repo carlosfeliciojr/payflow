@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/extract/extract_page.dart';
 import 'package:payflow/modules/home/home_controller.dart';
-import 'package:payflow/shared/model/boleto_model.dart';
+import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
-import 'package:payflow/shared/widgets/boleto_tile/boleto_tile_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,19 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
-  final pages = [
-    Container(
-      child: BoletoTileWidget(
-          data: BoletoModel(
-              name: "Carlos",
-              dueDate: "22/05/2021",
-              value: 100,
-              barcode: "468461681864168")),
-    ),
-    Container(
-      color: Colors.blue,
-    )
-  ];
+  final pages = [MeusBoletosPage(), ExtractPage()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +61,9 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(
                   Icons.home,
-                  color: AppColors.primary,
+                  color: controller.currentPage == 0
+                      ? AppColors.primary
+                      : AppColors.body,
                 )),
             GestureDetector(
               onTap: () {
@@ -99,7 +90,9 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(
                   Icons.description_outlined,
-                  color: AppColors.body,
+                  color: controller.currentPage == 1
+                      ? AppColors.primary
+                      : AppColors.body,
                 )),
           ],
         ),
