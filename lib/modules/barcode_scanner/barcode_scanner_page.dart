@@ -1,3 +1,4 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_controller.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_status.dart';
@@ -112,19 +113,26 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
               valueListenable: controller.statusNotifier,
               builder: (_, status, __) {
                 if (status.hasError) {
-                  return Align(
-                      alignment: Alignment.bottomLeft,
-                      child: BottomSheetWidget(
-                          primaryLabel: "Escanear novamente",
-                          primaryOnTap: () {
-                            controller.scanWithCamera();
-                          },
-                          secundaryLabel: "Digitar código",
-                          secundaryOnTap: () {},
-                          title:
-                              "Não foi possível identificar um código de barras.",
-                          subtitle:
-                              "Tente escanear novamente ou digite o código do seu boleto."));
+                  return AnimatedCard(
+                    direction: AnimatedCardDirection.left,
+                    child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: BottomSheetWidget(
+                            primaryLabel: "Escanear novamente",
+                            primaryOnTap: () {
+                              controller.scanWithCamera();
+                            },
+                            secundaryLabel: "Digitar código",
+                            secundaryOnTap: () {
+                              Navigator.pushReplacementNamed(
+                                  context, "/insert_boleto",
+                                  arguments: controller.status.barcode);
+                            },
+                            title:
+                                "Não foi possível identificar um código de barras.",
+                            subtitle:
+                                "Tente escanear novamente ou digite o código do seu boleto.")),
+                  );
                 } else {
                   return Container();
                 }

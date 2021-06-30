@@ -5,7 +5,6 @@ class BoletoModel {
   final String? dueDate;
   final double? value;
   final String? barcode;
-
   BoletoModel({
     this.name,
     this.dueDate,

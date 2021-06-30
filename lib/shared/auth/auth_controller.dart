@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payflow/shared/model/user_model.dart';
+import 'package:payflow/shared/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController {
@@ -23,9 +23,9 @@ class AuthController {
     return;
   }
 
-  Future<void> hasCurrentUser(BuildContext context) async {
+  Future<void> currentUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
-    await Future.delayed(Duration(milliseconds: 2500));
+    await Future.delayed(Duration(seconds: 2));
     if (instance.containsKey("user")) {
       final json = instance.get("user") as String;
       setUser(context, UserModel.fromJson(json));

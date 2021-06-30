@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payflow/shared/model/boleto_model.dart';
+import 'package:payflow/shared/models/boleto_model.dart';
 import 'package:payflow/shared/widgets/boleto_list/boleto_list_controller.dart';
 import 'package:payflow/shared/widgets/boleto_tile/boleto_tile_widget.dart';
 
