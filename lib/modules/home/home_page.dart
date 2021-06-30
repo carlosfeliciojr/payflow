@@ -15,8 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int refresh = 0;
   final controller = HomeController();
   final pages = [MeusBoletosPage(), ExtractPage()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,5 +105,9 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void refreshData() {
+    refresh++;
   }
 }
